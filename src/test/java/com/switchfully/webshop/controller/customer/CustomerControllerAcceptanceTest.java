@@ -1,7 +1,7 @@
 package com.switchfully.webshop.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.switchfully.webshop.domain.customer.AddressDto;
+import com.switchfully.webshop.domain.customer.Address;
 import com.switchfully.webshop.domain.customer.CustomerDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -30,12 +28,7 @@ class CustomerControllerAcceptanceTest {
                 .setFirstName("Ruben")
                 .setLastName("Neven")
                 .setEmailAddress("rubenneven@gmail.com")
-                .setAddressDto(new AddressDto()
-                        .setId("1")
-                        .setCity("Diepenbeek")
-                        .setCountry("Belgium")
-                        .setStreet("Pelserweg")
-                        .setHouseNumber("5"))
+                .setAddress(new Address("Pelserweg", "5", "Diepenbeek","3590","Belgium"))
                 .setPhoneNumber("0484/48.29.78");
 
         mockMvc.perform(post("/customers")

@@ -8,19 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerMapper {
 
-    private final AddressMapper addressMapper;
-
-    @Autowired
-    public CustomerMapper(AddressMapper addressMapper) {
-        this.addressMapper = addressMapper;
-    }
-
     public Customer mapToCustomer(CustomerDto customerDto){
         return new Customer(
                 customerDto.getFirstName(),
                 customerDto.getLastName(),
                 customerDto.getEmailAddress(),
-                addressMapper.mapToAddress(customerDto.getAddressDto()),
                 customerDto.getPhoneNumber());
     }
 
@@ -30,7 +22,6 @@ public class CustomerMapper {
                 .setFirstName(customer.getFirstName())
                 .setLastName(customer.getLastName())
                 .setEmailAddress(customer.getEmailAddress())
-                .setAddressDto(addressMapper.mapToAddressDomain(customer.getAddress()))
                 .setPhoneNumber(customer.getPhoneNumber());
     }
 }

@@ -1,18 +1,43 @@
 package com.switchfully.webshop.domain.customer;
 
+import com.switchfully.webshop.exception.InvalidCustomerInputException;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.UUID;
 
-public class Customer {
-    private String id;
-    private final String firstName;
-    private final String lastName;
-    private final String emailAddress;
-    private final Address address;
-    private final String phoneNumber;
+import static javax.persistence.GenerationType.*;
 
-    public Customer(String firstName, String lastName, String emailAddress, Address address, String phoneNumber) {
-        this.address = address;
+@Entity
+@Table(name = "CUSTOMERS")
+@NoArgsConstructor
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private String id;
+    @Column(name = "FIRST_NAME")
+    private  String firstName;
+    @Column(name = "LAST_NAME")
+    private  String lastName;
+    @Column(name = "EMAIL")
+    private  String emailAddress;
+    @Transient
+    private Address address;
+    @Column(name = "PHONE")
+    private  String phoneNumber;
+
+    public Customer(String firstName, String lastName, String emailAddress, String phoneNumber) {
         this.id = UUID.randomUUID().toString();
+        if (firstName == null){
+            throw new InvalidCustomerInputException("Please fill in firstname");
+        } else if (lastName == null){
+            throw new InvalidCustomerInputException("Please fill in lastname");
+        } else if (emailAddress == null){
+            throw new InvalidCustomerInputException("Please fill in emailaddress");
+        } else if (phoneNumber == null){
+            throw new InvalidCustomerInputException("Please fill in phonenumber");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
@@ -50,7 +75,4 @@ public class Customer {
                 '}';
     }
 
-    public Address getAddress() {
-        return address;
-    }
 }

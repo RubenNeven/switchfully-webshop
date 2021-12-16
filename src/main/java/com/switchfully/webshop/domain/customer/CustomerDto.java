@@ -5,8 +5,7 @@ public class CustomerDto {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private AddressDto addressDto;
-
+    private Address address;
     private String phoneNumber;
 
 
@@ -30,8 +29,8 @@ public class CustomerDto {
         return this;
     }
 
-    public CustomerDto setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
+    public CustomerDto setAddress(Address addressDto) {
+        this.address = addressDto;
         return this;
     }
 
@@ -60,7 +59,7 @@ public class CustomerDto {
         return phoneNumber;
     }
 
-    public AddressDto getAddressDto() {
-        return addressDto;
+    public Address getAddress() {
+        return address;
     }
 }
