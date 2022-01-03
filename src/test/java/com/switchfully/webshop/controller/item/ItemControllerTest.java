@@ -1,12 +1,11 @@
 package com.switchfully.webshop.controller.item;
 
-import com.switchfully.webshop.domain.item.ItemDto;
+import com.switchfully.webshop.controller.dto.ItemDto;
 import com.switchfully.webshop.service.item.ItemService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 class ItemControllerTest {

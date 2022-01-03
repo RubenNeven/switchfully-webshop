@@ -2,8 +2,7 @@ package com.switchfully.webshop.controller.customer;
 
 
 import com.switchfully.webshop.domain.customer.Address;
-import com.switchfully.webshop.domain.customer.Customer;
-import com.switchfully.webshop.domain.customer.CustomerDto;
+import com.switchfully.webshop.controller.dto.CustomerDto;
 import com.switchfully.webshop.service.customer.CustomerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

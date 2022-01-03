@@ -6,8 +6,8 @@ import static com.switchfully.webshop.security.Feature.*;
 import java.util.List;
 
 public enum Role {
-    MANAGER("admin", GET_CUSTOMER_HELLO_WORLD, CREATE_CUSTOMER),
-    MEMBER("member", GET_CUSTOMER_HELLO_WORLD);
+    MANAGER("admin", GET_ALL_ITEMS, CREATE_CUSTOMER, UPDATE_ITEM, GET_ALL_CUSTOMERS),
+    MEMBER("member", CREATE_CUSTOMER);
 
     private final String label;
     private final List<Feature> featureList;

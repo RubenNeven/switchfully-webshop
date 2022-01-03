@@ -1,8 +1,7 @@
 package com.switchfully.webshop.controller.mapper;
 
 import com.switchfully.webshop.domain.customer.Customer;
-import com.switchfully.webshop.domain.customer.CustomerDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.switchfully.webshop.controller.dto.CustomerDto;
 import org.springframework.stereotype.Component;
 
 @Component

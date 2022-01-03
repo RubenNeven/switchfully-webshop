@@ -1,7 +1,7 @@
 package com.switchfully.webshop.controller.mapper;
 
 import com.switchfully.webshop.domain.item.Item;
-import com.switchfully.webshop.domain.item.ItemDto;
+import com.switchfully.webshop.controller.dto.ItemDto;
 import org.springframework.stereotype.Component;
 
 @Component

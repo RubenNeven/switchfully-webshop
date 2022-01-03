@@ -2,7 +2,7 @@ package com.switchfully.webshop.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.switchfully.webshop.domain.customer.Address;
-import com.switchfully.webshop.domain.customer.CustomerDto;
+import com.switchfully.webshop.controller.dto.CustomerDto;
 import com.switchfully.webshop.service.customer.CustomerService;
 
 import org.junit.jupiter.api.DisplayName;

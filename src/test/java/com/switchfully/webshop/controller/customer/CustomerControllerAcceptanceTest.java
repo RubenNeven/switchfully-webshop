@@ -2,7 +2,7 @@ package com.switchfully.webshop.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.switchfully.webshop.domain.customer.Address;
-import com.switchfully.webshop.domain.customer.CustomerDto;
+import com.switchfully.webshop.controller.dto.CustomerDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

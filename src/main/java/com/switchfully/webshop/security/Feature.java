@@ -1,6 +1,8 @@
 package com.switchfully.webshop.security;
 
 public enum Feature {
-    GET_CUSTOMER_HELLO_WORLD,
-    CREATE_CUSTOMER;
+    GET_ALL_ITEMS,
+    CREATE_CUSTOMER,
+    GET_ALL_CUSTOMERS,
+    UPDATE_ITEM
 }

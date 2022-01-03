@@ -1,4 +1,6 @@
-package com.switchfully.webshop.domain.customer;
+package com.switchfully.webshop.controller.dto;
+
+import com.switchfully.webshop.domain.customer.Address;
 
 public class CustomerDto {
     private String id;

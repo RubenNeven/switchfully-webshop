@@ -1,4 +1,4 @@
-package com.switchfully.webshop.domain.item;
+package com.switchfully.webshop.controller.dto;
 
 public class ItemDto {
     private String id;
