@@ -1,6 +1,7 @@
 package com.switchfully.webshop.controller.customer;
 
 
+import com.switchfully.webshop.domain.customer.Address;
 import com.switchfully.webshop.domain.customer.Customer;
 import com.switchfully.webshop.domain.customer.CustomerDto;
 import com.switchfully.webshop.service.customer.CustomerService;
@@ -16,11 +17,18 @@ class CustomerControllerUnitTest {
     void givenACustomerDto_whenCreatingACustomer_thenReturnCreatedCustomer() {
         CustomerService customerService = Mockito.mock(CustomerService.class);
 
-        Customer customer = new Customer("Ruben", "Neven", "rubenneven@gmail.com", "0484/48.29.78");
-        Mockito.when(customerService.createCustomer(any(CustomerDto.class))).thenReturn(customer);
+        CustomerDto customerDto = new CustomerDto()
+                .setId("1")
+                .setFirstName("Ruben")
+                .setLastName("Neven")
+                .setEmailAddress("rubenneven@gmail.com")
+                .setAddress(new Address("Pelserweg", "5", "Diepenbeek", "3590", "Belgium"))
+                .setPhoneNumber("0484/48.29.78");
+
+        Mockito.when(customerService.createCustomer(any(CustomerDto.class))).thenReturn(customerDto);
 
         CustomerController customerController = new CustomerController(customerService);
-        Assertions.assertEquals(customer, customerController.createCustomer(new CustomerDto()));
+        Assertions.assertEquals(customerDto, customerController.createCustomer(new CustomerDto()));
     }
 
 }

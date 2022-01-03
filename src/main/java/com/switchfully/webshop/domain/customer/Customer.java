@@ -6,42 +6,56 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.UUID;
 
-import static javax.persistence.GenerationType.*;
-
 @Entity
 @Table(name = "CUSTOMERS")
 @NoArgsConstructor
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
     private String id;
     @Column(name = "FIRST_NAME")
-    private  String firstName;
+    private String firstName;
     @Column(name = "LAST_NAME")
-    private  String lastName;
-    @Column(name = "EMAIL")
-    private  String emailAddress;
-    @Transient
+    private String lastName;
+    @Column(name = "EMAIL_ADDRESS")
+    private String emailAddress;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address")
     private Address address;
-    @Column(name = "PHONE")
-    private  String phoneNumber;
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
 
-    public Customer(String firstName, String lastName, String emailAddress, String phoneNumber) {
+    public Customer(String firstName, String lastName, String emailAddress, String phoneNumber, Address address) {
         this.id = UUID.randomUUID().toString();
-        if (firstName == null){
-            throw new InvalidCustomerInputException("Please fill in firstname");
-        } else if (lastName == null){
-            throw new InvalidCustomerInputException("Please fill in lastname");
-        } else if (emailAddress == null){
-            throw new InvalidCustomerInputException("Please fill in emailaddress");
-        } else if (phoneNumber == null){
-            throw new InvalidCustomerInputException("Please fill in phonenumber");
-        }
+        if (!isValidUserInput(firstName)) {
+            throw new InvalidCustomerInputException("Please fill in firstname");}
+        if (!isValidUserInput(lastName)) {
+            throw new InvalidCustomerInputException("Please fill in lastname");}
+        if (!isValidUserInput(emailAddress)) {
+            throw new InvalidCustomerInputException("Please fill in emailaddress");}
+        if (!isValidUserInput(phoneNumber)) {
+            throw new InvalidCustomerInputException("Please fill in phonenumber");}
+        if (!isValidUserInput(address.getCity())) {
+            throw new InvalidCustomerInputException("Please fill in city");}
+        if (!isValidUserInput(address.getHouseNumber())) {
+            throw new InvalidCustomerInputException("Please fill in house number");}
+        if (!isValidUserInput(address.getCountry())) {
+            throw new InvalidCustomerInputException("Please fill in country");}
+        if (!isValidUserInput(address.getStreet())) {
+            throw new InvalidCustomerInputException("Please fill in street");}
+        if (!isValidUserInput(address.getZipCode())) {
+            throw new InvalidCustomerInputException("Please fill in zipcode");}
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+
+
+    private boolean isValidUserInput(String inputString) {
+        return inputString != null;
     }
 
     public String getId() {
@@ -64,6 +78,10 @@ public class Customer {
         return phoneNumber;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -74,5 +92,4 @@ public class Customer {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
-
 }

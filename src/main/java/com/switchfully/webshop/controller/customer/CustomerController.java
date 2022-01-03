@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -26,7 +25,7 @@ public class CustomerController {
 
     @PostMapping(produces = "application/json", consumes = "application/json")
     @ResponseStatus(CREATED)
-    public Customer createCustomer(@RequestBody CustomerDto customerDto){
+    public CustomerDto createCustomer(@RequestBody CustomerDto customerDto){
         logger.info("Create customer (controller) called");
         return customerService.createCustomer(customerDto);
     }

@@ -2,7 +2,6 @@ package com.switchfully.webshop.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.switchfully.webshop.domain.customer.Address;
-import com.switchfully.webshop.domain.customer.Customer;
 import com.switchfully.webshop.domain.customer.CustomerDto;
 import com.switchfully.webshop.service.customer.CustomerService;
 
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.mockito.ArgumentMatchers.any;
@@ -22,10 +22,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
+@ActiveProfiles("test")
 class CustomerControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     @MockBean
     private CustomerService customerService;
 
@@ -35,15 +37,16 @@ class CustomerControllerIntegrationTest {
         @DisplayName("Return customer when creating with customer dto")
         void returnCustomerWhenCreatingCustomer() throws Exception {
             CustomerDto customerDto = new CustomerDto();
-            Customer customer = new Customer(
-                    "Ruben",
-                    "Neven",
-                    "rubenneven@gmail.com",
-                    "0484/48.29.78");
+            customerDto
+                    .setId("1")
+                    .setFirstName("Ruben")
+                    .setLastName("Neven")
+                    .setEmailAddress("rubenneven@gmail.com")
+                    .setPhoneNumber("0484/48.29.78")
+                    .setAddress(new Address("Pelserweg", "5", "Diepenbeek","3590", "Belgium"));
 
-            Mockito.when(customerService
-                            .createCustomer(any(CustomerDto.class)))
-                    .thenReturn(customer);
+            Mockito.when(customerService.createCustomer(any(CustomerDto.class)))
+                    .thenReturn(customerDto);
 
             mockMvc.perform(post("/customers")
                             .content(new ObjectMapper().writeValueAsString(customerDto))
